@@ -1,0 +1,16 @@
+echo -n "Enter repository name: "
+read REPONAME
+echo
+echo -n "Enter username: "
+read USERNAME
+REPOGITNAMETMP=$( echo "$REPONAME" | tr ' ' '-')
+GITNAME=$(echo $REPOGITNAMETMP | tr '[:upper:]' '[:lower:]')
+echo -n "#" > README.MD
+echo "$GITNAME" >> README.MD
+git init
+git add .
+git commit -m "First commit"
+GITREPOLOC="git@github.com:$USERNAME/$REPOGITNAMETMP.git"
+echo "$GITREPOLOC"
+git remote add origin $GITREPOLOC
+git push -u origin master
